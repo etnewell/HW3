@@ -2,11 +2,17 @@
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
-function writePassword() {
+function generatePassword() {
 
 
 
-  var characterPrompt =   prompt("How many characters do you want 8-124?");
+  var characterPrompt =  prompt("How many characters do you want 8-124?");
+
+  if (characterPrompt < 8 || characterPrompt > 124) {
+    alert("Please choose a limit between 8 and 124");
+    prompt("How many characters do you want 8-124?");
+  }
+  else{};
   var lowerConfirm = confirm("Do you want lowercase letters?")
   var numberConfirm = confirm("Do you want numbers?");
   var specialConfirm = confirm("Do you want special characters?");
@@ -24,30 +30,38 @@ function writePassword() {
   while (password.length < charNum){
 
     if (lowerConfirm === true && password.length < charNum){
-      password += alphabet[math.floor(math.random() * alphabet.length)]
+      password += alphabet[Math.floor(Math.random() * alphabet.length)];
     };
 
     if (numberConfirm === true && password.length < charNum){
-      password += numbers[math.floor(math.random() * numbers.length)]
+      password += numbers[Math.floor(Math.random() * numbers.length)];
     };
 
     if (specialConfirm === true && password.length < charNum){
-      password += specialCharacters[math.floor(math.random() * specialCharacters.length)]
+      password += specialCharacters[Math.floor(Math.random() * specialCharacters.length)];
     };
 
-  } 
-  // var password = generatePassword();
-  // var passwordText = document.querySelector("#password");
-
-
-  
+    if (caseConfirm === true && password.length < charNum){
+      password += capitalLetters[Math.floor(Math.random() * capitalLetters.length)];
+    }
+  }
+    return password
+   
+}
       
-  console.log(alphabet)
-  console.log(numbers)
-  console.log(capitalLetters)
-  console.log(specialCharacters)
 
-console.log(totalchar)
+  function writePassword() {
+    var password = generatePassword();
+    var passwordText = document.querySelector("#password");
+  
+    passwordText.value = password;
+  
+  }
+  
+  // Add event listener to generate button
+  generateBtn.addEventListener("click", writePassword);
+  
+
 
 // for (var i = 0; i < (totalchar); i++) {
 //   // Randomly chooses a choice from the options array. This is the Computer's guess.
@@ -87,14 +101,6 @@ console.log(totalchar)
 
 
 // if (characterPrompt)
-
-  passwordText.value = password;
-      };
-
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 // console.log(specAmtNum)
 // console.log(caseAmtNum)
 // console.log(numNum)
@@ -127,5 +133,10 @@ generateBtn.addEventListener("click", writePassword);
 //       for (var i = 0; i < vegetables.length; i++) {
 //         console.log("I love " + vegetables[i]);
 
+
+  // console.log(alphabet)
+  // console.log(numbers)
+  // console.log(capitalLetters)
+  // console.log(specialCharacters)
 
 
